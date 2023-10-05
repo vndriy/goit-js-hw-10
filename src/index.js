@@ -1,9 +1,6 @@
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
 import SlimSelect from "slim-select";
 
-
-
-
 const selector = document.querySelector('.breed-select');
 
 const result = document.querySelector('.cat-info');
@@ -23,9 +20,8 @@ fetchBreeds()
     })
     .catch(error => {
         console.log(error);
+        hideLoader();
 errorMessage.classList.remove('hidden');
-
-
     })
 
 
@@ -46,15 +42,15 @@ selector.addEventListener('change', () => {
                 <p class="descript">${descr}</p>
 
                 <h3>Temperament:</h3>
-                <p>${temperament}</p>`
-            result.innerHTML = ('beforeend', markupResult)
+                <p>${temperament}</p>`;
+            result.innerHTML = ('beforeend', markupResult);
             hideLoader();
-
-
+            errorMessage.classList.add('hidden');
         })
         .catch(error => {
             console.log(error);
-errorMessage.classList.remove('hidden');
+            hideLoader();
+            errorMessage.classList.remove('hidden');
         })
 });
     
