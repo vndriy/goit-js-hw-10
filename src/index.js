@@ -21,7 +21,8 @@ fetchBreeds()
     .catch(error => {
         console.log(error);
         hideLoader();
-errorMessage.classList.remove('hidden');
+        errorMessage.classList.remove('hidden');
+        result.classList.add('hidden');
     })
 
 
@@ -46,11 +47,13 @@ selector.addEventListener('change', () => {
             result.innerHTML = ('beforeend', markupResult);
             hideLoader();
             errorMessage.classList.add('hidden');
+            result.classList.remove('hidden');
         })
         .catch(error => {
             console.log(error);
             hideLoader();
             errorMessage.classList.remove('hidden');
+            result.classList.add('hidden');
         })
 });
     
@@ -63,5 +66,8 @@ function showLoader() {
 function hideLoader() {
     loader.classList.add('hidden');
     selector.classList.remove('hidden');
-    result.classList.remove('hidden');
+    // result.classList.remove('hidden');
+    if (!errorMessage.classList.contains('hidden')) {
+        result.classList.remove('hidden');
+    }
 }
